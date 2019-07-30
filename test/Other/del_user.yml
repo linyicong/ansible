@@ -1,0 +1,10 @@
+---
+- hosts: webservers
+  remote_user: root
+  tasks:
+    - name: Delete some user
+      user: name={{ item }} state=absent remove=yes
+      with_items:
+        - testA
+        - testB
+        - testC

@@ -1,0 +1,4 @@
+---
+# repo info
+USTC_baseurl: "https://mirrors.ustc.edu.cn/centos/$releasever/os/$basearch/"
+ALI_baseurl: "https://mirrors.ustc.edu.cn/centos/$releasever/os/$basearch/"

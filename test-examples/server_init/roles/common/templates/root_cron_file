@@ -1,0 +1,7 @@
+### Ansible configure zone ###
+#Ansible: Sync time
+0 */2 * * * /usr/sbin/ntpdate {{ ntpserver }} &>/dev/null
+{% if "{{ ansible_local.customize.server.role }}" == "master" %}
+#Ansible: Get server facts
+00 02 * * * /usr/bin/ansible all -m setup &>/dev/null
+{% endif %}

@@ -1,0 +1,10 @@
+#
+- name: systemp args | Change nofile limits.
+  lineinfile: dest=/etc/security/limits.conf line={{ item }}
+  with_items:
+    - '* - nofile 165535'
+    - '* soft nofile 165535'
+    - '* hard nofile 165535'
+    - '* soft memlock unlimited'
+    - '* hard memlock unlimited'
+

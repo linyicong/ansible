@@ -1,0 +1,16 @@
+---
+- hosts: local
+  tasks:
+    - name: include variables file
+      include_vars: packages.yml
+
+    - name: install base soft
+      yum:
+        name: "{{ packages.base_soft }}"
+        state: latest
+      tags: install_base_soft
+
+    - name: install net soft
+      yum: name="{{ packages.net_soft }}" state=latest
+      tags: install_net_soft
+

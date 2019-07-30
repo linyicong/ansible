@@ -1,0 +1,9 @@
+---
+- name: test | echo role vars info
+  debug:
+    msg: "{{ dir }} --- {{ test_port }}"
+
+- name: test | template file
+  template:
+    src: aaa.j2
+    dest: /tmp/a2.conf

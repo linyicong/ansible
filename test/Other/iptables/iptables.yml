@@ -1,0 +1,13 @@
+---
+- hosts: server
+  remote_user: root
+  tasks:
+  - name: install libselinux
+    yum: pkg=libselinux  state=latest
+  - name: update iptables rules file
+    template: src=iptables.j2 dest=/etc/sysconfig/iptables backup=yes
+    notify:
+    - restart iptables
+  handlers:
+  - name: restart iptables
+    service: name=iptables state=restarted

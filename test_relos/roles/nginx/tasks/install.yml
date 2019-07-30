@@ -1,0 +1,93 @@
+#
+
+- name: install | 检查nginx软件包是否已存在
+  stat:
+    path: "{{ nginx_file_path }}"
+  connection: local
+  register: nginx_file_result
+  tags: install_check_nginx_gz
+
+
+- name: install | 创建nginx软件包下载目录
+  file:
+    path: "{{ software_file_path }}"
+    state: directory
+  connection: local
+  when: not nginx_file_result.stat.exists
+  tags: install_mk_nginx_download_dir
+
+
+- name: install | 下载nginx软件包
+  get_url:
+    url: "{{ nginx_file_url }}"
+    dest: "{{ software_file_path }}"
+    validate_certs: no
+  connection: local
+  when: not nginx_file_result.stat.exists
+  tags: install_wget_nginx_gz
+
+
+- name: install | 确认nginx安装目录已存在
+  file:
+    path: "{{ nginx_install_path }}"
+    state: directory
+  tags: install_ensure_nginx_install_dir
+
+
+- name: install | 将nginx软件包拷贝并解压到nginx服务器
+  unarchive:
+    src: "{{ nginx_file_path }}"
+    dest: "/tmp"
+    creates: "/tmp/nginx-{{ nginx_version }}"
+  tags: install_unzip_nginx_gz
+
+
+- name: install | 安装依赖组件
+  yum:
+    name: "{{ nginx_depend_soft }}"
+    state: installed
+  tags: install_depend_soft
+
+
+- name: install | 添加nginx用户组
+  group:
+    name: "{{ nginx_group }}"
+  tags: install_append_group
+
+
+- name: install | 添加nginx用户
+  user:
+    name: "{{ nginx_user }}"
+    group: "{{ nginx_group }}"
+    create_home: no
+    shell: /sbin/nologin
+  tags: install_append_user
+
+
+- name: install | 确认nginx执行文件是否存在
+  stat:
+    path: "{{ nginx_install_path }}/sbin/nginx"
+  register: nginx_bin_result
+  tags: install_check_nginx_bin_file
+
+
+- name: install | 编译nginx
+  shell: "{{ item }}"
+  with_items:
+    - "{{ nginx_bulid_command }}"
+    - make && make install
+  args:
+    chdir: "/tmp/nginx-{{ nginx_version }}/"
+  when: not nginx_bin_result.stat.exists
+  tags: install_bulid_nginx
+
+
+- name: install | 配置环境变量
+  lineinfile: path=/etc/profile.d/nginx.sh line='export PATH={{ nginx_install_path }}/sbin/:${PATH}' create=True
+  tags: config_env_variable
+
+
+- name: install | 拷贝nginx语法高亮配置到vim配置目录
+  shell: "cp -rf /tmp/nginx-{{ nginx_version }}/contrib/vim/* /usr/share/vim/vimfiles/"
+  tags: install_copy_highlight_for_vim
+

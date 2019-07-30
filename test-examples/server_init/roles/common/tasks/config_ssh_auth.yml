@@ -1,0 +1,14 @@
+---
+#
+- name: ssh_auth | Copy SSH configure file
+  copy: src=sshd_config dest=/etc/ssh/sshd_config backup=yes
+  tags: copy_ssh_config
+  notify: reload sshd
+
+
+- name: ssh_auth | Copy key file
+  copy: src=authorized_keys dest=/root/.ssh/authorized_keys backup=yes mode=600
+  tags: copy_key_file
+
+
+

@@ -1,0 +1,14 @@
+---
+#
+- name: network_config | ensure Network card is enable on boot
+  lineinfile:
+    path: "/etc/sysconfig/network-scripts/ifcfg-{{ ansible_default_ipv4.alias }}"
+    line: "ONBOOT=yes"
+    regexp: "^ONBOOT=.*"
+    backup: yes
+  tags: network_enable_boot
+  notify: restart network
+
+- name: network_config | configure dns server
+  template: src=resolv.conf dest=/etc/resolv.conf backup=yes
+  tags: config_dns

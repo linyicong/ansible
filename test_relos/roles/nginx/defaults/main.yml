@@ -1,0 +1,77 @@
+---
+#
+software_file_path: "/usr/local/src"
+
+nginx_version: "1.14.2"
+nginx_gz_file: "nginx-{{ nginx_version }}.tar.gz"
+nginx_file_url: "https://nginx.org/download/{{ nginx_gz_file }}"
+
+nginx_file_path: "{{ software_file_path }}/{{ nginx_gz_file }}"
+
+nginx_install_path: "/usr/local/nginx"
+
+nginx_conf_file_path: "{{ nginx_install_path }}/conf"
+nginx_vhost_path: "{{ nginx_conf_file_path }}/vhost"
+nginx_conf_file: "{{ nginx_install_path }}/conf/nginx.conf"
+
+nginx_log_path: "{{ nginx_install_path }}/logs"
+nginx_error_log: "{{ nginx_log_path }}/error.log"
+nginx_access_log: "{{ nginx_log_path }}/access.log"
+nginx_pid_file: "{{ nginx_log_path }}/nginx.pid"
+
+
+
+# Define default server variable
+default_server_listen_port: "80"
+default_server_name: "www.cong.com"
+default_server_dir: "/data/www/{{ default_server_name }}"
+default_server_access_log: "{{ nginx_log_path }}/{{ default_server_name }}_access.log"
+
+nginx_user: "www"
+nginx_group: "www"
+
+nginx_depend_soft:
+  - gcc
+  - gcc-c++
+  - pcre-devel
+  - zlib-devel
+  - openssl-devel
+  - libxslt-devel
+  - GeoIP-devel
+  - perl-ExtUtils-Embed
+
+nginx_bulid_command: >
+  ./configure
+  --prefix={{ nginx_install_path }}
+  --user={{ nginx_user }}
+  --group={{ nginx_group }}
+  --with-file-aio
+  --with-http_auth_request_module
+  --with-http_ssl_module
+  --with-http_v2_module
+  --with-http_realip_module
+  --with-http_addition_module
+  --with-http_xslt_module=dynamic
+  --with-http_geoip_module=dynamic
+  --with-http_sub_module
+  --with-http_dav_module
+  --with-http_flv_module
+  --with-http_mp4_module
+  --with-http_gunzip_module
+  --with-http_gzip_static_module
+  --with-http_random_index_module
+  --with-http_secure_link_module
+  --with-http_degradation_module
+  --with-http_slice_module
+  --with-http_stub_status_module
+  --with-http_perl_module=dynamic
+  --with-pcre
+  --with-pcre-jit
+  --with-stream=dynamic
+  --with-stream_ssl_module
+
+nginx_worker_processes: "{{ ansible_processor_vcpus | default(ansible_processor_count) }}"
+
+nginx_gzip: True
+
+

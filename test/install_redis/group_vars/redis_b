@@ -1,0 +1,3 @@
+---
+# redis server listen port
+redis_port=8591

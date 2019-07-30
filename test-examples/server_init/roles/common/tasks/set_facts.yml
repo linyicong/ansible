@@ -1,0 +1,28 @@
+---
+#
+- name: set_facts | ensure facts dir exist
+  file:
+    path: "{{ ansible_facts_dir }}"
+    state: directory
+  tags:
+    - set_fact
+    - make_facts_dir
+
+
+- name: set_facts | config server facts info
+  template:
+    src: customize.fact
+    dest: "{{ ansible_facts_dir }}/{{ ansible_facts_file }}"
+  when:
+    - roles_list[ansible_default_ipv4.address] is defined
+    - project_type_list[ansible_default_ipv4.address] is defined
+  tags:
+    - set_fact
+    - config_fact
+
+
+- name: set_facts | reload server fact
+  setup:
+  tags:
+    - set_fact
+    - reload_fact

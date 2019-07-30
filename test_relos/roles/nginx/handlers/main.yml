@@ -1,0 +1,18 @@
+---
+#
+
+- name: Configtest nginx
+  shell: /etc/init.d/nginx configtest
+
+
+- name: Reload nginx for after check nginx config
+  service: name=nginx state=reloaded
+  when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "6"
+
+
+- name: reload nginx
+  debug: msg="check nginx config first"
+  changed_when: True
+  notify:
+    - Configtest nginx
+    - Reload nginx for after check nginx config

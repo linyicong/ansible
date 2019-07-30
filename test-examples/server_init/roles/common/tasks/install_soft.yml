@@ -1,0 +1,7 @@
+---
+#
+- name: install_soft | install base software
+  yum: name={{ base_soft }} state=latest update_cache=yes
+  tags: install_base_soft
+
+

@@ -1,0 +1,13 @@
+---
+- hosts: host1
+  remote_user: root
+  vars:
+    soft_name: memcache
+  task:
+    - name: Test connect to host1 server
+      ping:
+
+    - name: Install {{ soft_name }}
+      yum: name={{ soft_name }} state=latest
+
+

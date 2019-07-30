@@ -1,0 +1,17 @@
+---
+
+- name: Change hostname
+  hostname: "name={{ ipnames.get(ansible_default_ipv4.address)}}"
+  when: ipnames.get(ansible.default_ipv4.address)
+
+
+- name: Change Ansible server hostname
+  hostname: "name={{ ipnames.get(ansible_default_ipv4.address)}}"
+  connection: local
+  when: ipnames.get(ansible.default_ipv4.address)
+
+
+- name: Add hostname to hostnam config file
+  lineinfile: "dest={{ hostname_file }} line='{{ item.key }} {{ item.value }}'"
+  with_dict: {{ ipnames }}
+  when: ipnames

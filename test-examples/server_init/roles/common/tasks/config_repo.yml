@@ -1,0 +1,31 @@
+---
+#
+- name: config_repo | Install yum epel repo
+  yum: name=epel-release state=present
+  tags: install_epel
+
+
+- name: config_repo | Config USTC repo
+  yum_repository:
+    name: USTC
+    file: USTC_Centos_Base
+    description: USTC yum repo
+    baseurl: "{{ USTC_baseurl }}"
+  tags:
+    - config_repo
+    - USTC_REPO
+
+
+- name: config_repo | Config Ali USTC repo
+  yum_repository:
+    name: USTC
+    file: Ali_Centos_Base
+    description: USTC yum repo
+    baseurl: "{{ ALI_baseurl }}"
+    gpgcheck: no
+    enabled: no
+  tags:
+    - config_repo
+    - ALI_REPO
+
+

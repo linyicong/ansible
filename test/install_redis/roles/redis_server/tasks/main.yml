@@ -1,0 +1,15 @@
+---
+- name: Install redis
+  yum:
+    name: redis
+    update_cache: yes
+    state: lastest
+
+- name: Configure redis file
+  template: src=redis_conf.j2  dest=/etc/redis.conf  backup=yes
+  notify: restart redis
+
+- name: test to see if selinux is running
+  command: getenforce
+  register: sestatus
+  changed_when: false

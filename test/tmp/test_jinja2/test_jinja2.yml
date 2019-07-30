@@ -1,0 +1,7 @@
+---
+- hosts: local
+  remote_user: root
+  gather_facts: no
+  tasks:
+    - name: test jinja2 var
+      template: src=test_module_file dest=/tmp/jinja2_var.txt

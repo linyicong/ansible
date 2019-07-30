@@ -1,0 +1,31 @@
+---
+# fact directory and customize fact file
+ansible_facts_dir: "/etc/ansible/facts.d"
+ansible_facts_file: "customize.fact"
+
+# server and the role info
+roles_list:
+  "192.168.137.10": "master"
+  "192.168.137.130": "master"
+  "192.168.137.13": "slave"
+  "192.168.137.199": "slave"
+  "192.168.137.11": "slave"
+  "192.168.137.131": "slave"
+  "192.168.137.133": "slave"
+  "192.168.137.134": "slave"
+  "192.168.137.236": "slave"
+
+
+# project type info
+project_type_list:
+  "192.168.137.10": "office_test"
+  "192.168.137.130": "home_test"
+  "192.168.137.13": "office_test"
+  "192.168.137.199": "office_test"
+  "192.168.137.11": "office_test"
+  "192.168.137.131": "home_test"
+  "192.168.137.133": "home_test"
+  "192.168.137.134": "home_test"
+  "192.168.137.236": "home_test"
+
+

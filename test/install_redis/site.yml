@@ -1,0 +1,8 @@
+---
+
+- name: redis server
+  hosts: redis_server
+  remote_user: root
+
+  roles:
+    - redis_server

@@ -1,0 +1,12 @@
+---
+#
+- name: congfig_firewall | Copy iptables rules file
+  template: src=iptables_default dest=/etc/sysconfig/iptables backup=yes
+  tags: copy_iptables_file
+  notify: restart iptables
+  when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "6"
+
+
+
+
+
