@@ -1,6 +1,3 @@
-{
-    "server": {
-        "role": "{{ roles_list[ansible_default_ipv4.address] }}",
-        "project_type": "{{ project_type_list[ansible_default_ipv4.address] }}"
-    }
-}
+[private]
+role={{ roles_list[ansible_default_ipv4.address] }}
+

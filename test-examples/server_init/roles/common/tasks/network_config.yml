@@ -10,5 +10,5 @@
   notify: restart network
 
 - name: network_config | configure dns server
-  template: src=resolv.conf dest=/etc/resolv.conf backup=yes
+  copy: src=resolv.conf dest=/etc/resolv.conf
   tags: config_dns

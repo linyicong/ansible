@@ -1,0 +1,10 @@
+[Cong_yum]
+baseurl = http://mirror.cong.com/centos/6/os/$basearch/
+{% if private_repo %}
+enabled = 1
+{% else %}
+enabled = 0
+{% endif %}
+gpgcheck = 0
+name = private yum repo
+

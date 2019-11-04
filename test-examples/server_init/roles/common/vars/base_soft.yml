@@ -31,5 +31,6 @@ base_soft:
   - 'expect'
   - 'mtr'
   - 'MySQL-python'
-  - 'PyMySQL'
+  - 'sysstat'
+  - 'python-pip'
 

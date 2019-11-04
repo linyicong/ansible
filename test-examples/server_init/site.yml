@@ -1,6 +1,8 @@
 ---
 #
 - hosts: all
+  vars:
+    - private_repo: False
   roles:
   - common
 

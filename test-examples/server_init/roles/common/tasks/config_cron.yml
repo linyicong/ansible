@@ -2,6 +2,3 @@
 #
 - name: config_cron | Configure sync time cron file
   template: src=root_cron_file dest=/var/spool/cron/root mode=600
-  tags:
-    - sync_time_cron
-

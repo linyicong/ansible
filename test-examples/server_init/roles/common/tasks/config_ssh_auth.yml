@@ -1,13 +1,39 @@
 ---
 #
+- name: ssh_auth | Create ssh directory
+  file:
+    path: /root/.ssh
+    owner: root
+    group: root
+    mode: 700
+    state: directory
+
+- name: ssh_auth | Copy ops key
+  copy:
+    src: local_id_rsa
+    dest: /root/.ssh/id_rsa
+    owner: root
+    group: root
+    mode: 600
+    backup: yes
+
 - name: ssh_auth | Copy SSH configure file
-  copy: src=sshd_config dest=/etc/ssh/sshd_config backup=yes
+  copy:
+    src: sshd_config
+    dest: /etc/ssh/sshd_config
+    backup: yes
   tags: copy_ssh_config
   notify: reload sshd
 
 
 - name: ssh_auth | Copy key file
-  copy: src=authorized_keys dest=/root/.ssh/authorized_keys backup=yes mode=600
+  copy:
+    src: authorized_keys
+    dest: /root/.ssh/authorized_keys
+    owner: root
+    group: root
+    mode: 644
+    backup: yes
   tags: copy_key_file
 
 

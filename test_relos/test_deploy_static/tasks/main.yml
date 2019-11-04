@@ -1,0 +1,19 @@
+---
+
+# 1，检查待发布代码是否存在
+- import_tasks: check.yml
+  when: not rollback
+
+# 2，发布代码到目标服务器
+- import_tasks: deploy.yml
+  when: not rollback
+
+# 3，检查验证发布代码是否成功
+- import_tasks: backup.yml
+  when: not rollback
+
+# 4，备份上线代码
+
+# 5，回滚上一个代码版本
+
+

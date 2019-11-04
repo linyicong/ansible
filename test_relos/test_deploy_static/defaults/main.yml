@@ -1,0 +1,34 @@
+---
+
+# 待发布的代码文件(绝对路径)
+deploy_file: ""
+
+# 部署应用名称(项目)
+deploy_project: "wordpress"
+
+# 发布服务名称
+deploy_service: "nginx"
+
+# 发布文件的用户
+deploy_service_user: "www"
+
+# 服务代码工作目录
+deploy_service_workpath: "/data/web/{{ deploy_project }}"
+
+# 代码存放目录
+code_save_path: "/data/code"
+
+# 部署临时目录
+deploy_code_tmp_path: "{{ code_save_path }}/deploy_tmp"
+
+# 上线代码存放目录
+online_code_path: "{{ code_save_path }}/online/{{ deploy_service }}"
+
+# 上一个代码版本存放目录
+previous_code_path: "{{ code_save_path }}/previous/{{ deploy_service }}"
+
+# 历史代码存放目录
+history_code_path: "{{ code_save_path }}/history/{{ deploy_service }}"
+
+# 是否回滚代码
+rollback: false

@@ -9,13 +9,18 @@
 -A INPUT -i lo -j ACCEPT
 -A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT
 -A INPUT -m state --state NEW -m tcp -p tcp --dport 873 -j ACCEPT
--A INPUT -m state --state NEW -m tcp -p tcp -s {{ ansible_default_ipv4.network }}/24 -j ACCEPT
 
 #app-rules
-{% if ansible_local.customize.server.role == "master" %}
+{% if ansible_local.customize.private.role == "ansible_server" %}
 -A INPUT -m state --state NEW -m tcp -p tcp --dport 3690 -j ACCEPT
 {% endif %}
 #mysql-and-game
+{% if ansible_local.customize.private.role == "gameserver" %}
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 9001:9999 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp -s 10.0.0.0/8 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp -s 172.16.0.0/12 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp -s 192.168.0.0/16 -j ACCEPT
+{% endif %}
 #gm-and-api
 #reject
 -A INPUT -j REJECT --reject-with icmp-host-prohibited
