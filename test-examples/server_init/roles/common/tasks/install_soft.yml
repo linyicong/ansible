@@ -1,7 +1,8 @@
 ---
 #
 - name: install_soft | install base software
-  yum: name={{ base_soft }} state=latest update_cache=yes
+  yum: "name={{ item }} state=last  update_cache=yes"
+  with_items: "{{ base_soft }}"
   tags: install_base_soft
 
 
