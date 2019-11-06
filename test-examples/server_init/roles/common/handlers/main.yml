@@ -22,3 +22,6 @@
 - name: load sysctl config
   shell: "sysctl -p "
 
+
+- name: reload firewall
+  service: name=firewall state=reloaded
