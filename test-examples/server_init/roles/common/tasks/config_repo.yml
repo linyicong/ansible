@@ -20,5 +20,5 @@
 - name: config_repe |copy private repo file
   template:
     src: "private-cong.repo.j2"
-    dest: dest: "/etc/yum.repos.d/private-cong.repo"
+    dest: "/etc/yum.repos.d/private-cong.repo"
 
