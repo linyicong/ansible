@@ -38,7 +38,7 @@
 
 # 系统优化配置
 - import_tasks: system_optimization.yml
-  tasks: system_optimization
+  tags: system_optimization
 
 # 基础软件安装
 - import_tasks: install_soft.yml
