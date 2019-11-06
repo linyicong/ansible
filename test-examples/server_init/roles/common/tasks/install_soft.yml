@@ -4,5 +4,3 @@
   yum: "name={{ item }} state=latest  update_cache=yes skip_broken=yes "
   with_items: "{{ base_soft }}"
   tags: install_base_soft
-
-
