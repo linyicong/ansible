@@ -1,5 +1,5 @@
 ---
-#
+# 
 - name: install_soft | install base software
   yum: "name={{ item }} state=latest  update_cache=yes skip_broken=yes "
   with_items: "{{ base_soft }}"
