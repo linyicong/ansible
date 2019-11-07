@@ -24,4 +24,4 @@
 
 
 - name: reload firewall
-  service: name=firewall state=reloaded
+  service: name=firewall state=restarted
