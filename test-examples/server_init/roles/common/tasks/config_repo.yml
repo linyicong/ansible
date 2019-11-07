@@ -1,24 +1,11 @@
 ---
 #
-- name: config_repo | copy repo key file
-  copy:
-    src: "{{ item }}"
-    dest: "/etc/pki/rpm-gpg/{{ item }}"
-  with_items:
-    - "RPM-GPG-KEY-EPEL-6-ALiYun"
-    - "RPM-GPG-KEY-EPEL-6"
-
-- name: config_repo | copy repo file
-  copy:
-    src: "{{ item }}"
+- name: config_repe |copy repo file
+  template:
+    src: "{{ item }}.j2"
     dest: "/etc/yum.repos.d/{{ item }}"
   with_items:
-    - "CentOS-ALiYun-Base.repo"
-    - "CentOS-EPEL.repo"
+    - "CentOS-ALiYun-Base.repo.j2"
+    - "private-cong.repo.j2"
   notify: yum makecache
-
-- name: config_repe |copy private repo file
-  template:
-    src: "private-cong.repo.j2"
-    dest: "/etc/yum.repos.d/private-cong.repo"
 

@@ -30,7 +30,6 @@ base_soft:
   - 'dstat'
   - 'expect'
   - 'mtr'
-  - 'MySQL-python'
   - 'sysstat'
-  - 'python-pip'
+  - 'epel-release'
 
