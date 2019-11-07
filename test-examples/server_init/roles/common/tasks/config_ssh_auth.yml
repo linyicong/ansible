@@ -5,7 +5,7 @@
     path: /root/.ssh
     owner: root
     group: root
-    mode: '700'
+    mode: 0600
     state: directory
 
 - name: ssh_auth | Copy ops key
@@ -14,7 +14,7 @@
     dest: /root/.ssh/id_rsa
     owner: root
     group: root
-    mode: '600'
+    mode: 0600
     backup: yes
 
 - name: ssh_auth | Copy SSH configure file
@@ -32,7 +32,7 @@
     dest: /root/.ssh/authorized_keys
     owner: root
     group: root
-    mode: '600'
+    mode: 0600
     backup: yes
   tags: copy_key_file
 
