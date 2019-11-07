@@ -5,7 +5,7 @@
     src: "{{ item }}.j2"
     dest: "/etc/yum.repos.d/{{ item }}"
   with_items:
-    - "CentOS-ALiYun-Base.repo.j2"
-    - "private-cong.repo.j2"
+    - "CentOS-ALiYun-Base.repo"
+    - "private-cong.repo"
   notify: yum makecache
 

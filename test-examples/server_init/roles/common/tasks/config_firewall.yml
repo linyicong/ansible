@@ -1,6 +1,6 @@
 ---
 #
-- name: congfig_firewall | Copy iptables firewall rules file
+- name: congfig_firewall | Copy iptables firewall rules file fro centos6
   template:
     src: iptables_default
     dest: /etc/sysconfig/iptables
