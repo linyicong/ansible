@@ -16,6 +16,7 @@
     group: root
     mode: 0600
     backup: yes
+  when: ansible_local.customize.private.role == "ansible_server"
 
 - name: ssh_auth | Copy SSH configure file
   copy:
