@@ -18,3 +18,11 @@
     hour: "2"
     job: "/usr/bin/ansible all -m setup &>/dev/null"
   when: ansible_local.customize.private.role == "ansible_server"
+
+
+- name: config_cron | Config clean trash file
+  cron:
+    name: clean_trash
+    minute: "15"
+    hour: "3"
+    job: "[ -d /data/.trash ] && find /data/.trash -depth -mindepth 1 -mtime +7 -type f -delete >/dev/null"
