@@ -26,7 +26,7 @@
     state: installed
 
 - name: install | install gitlab
-  shell: "rpm -ivh {{ gitlab_package_name }}
+  shell: "rpm -ivh {{ gitlab_package_name }}"
   args:
     chdir: {{ soft_package_directory }}
   when: {{ soft_package_directory }}/{{ gitlab_package_name }}
