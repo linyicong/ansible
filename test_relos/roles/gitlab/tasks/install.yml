@@ -20,6 +20,7 @@
     checksum: "{{ gitlab_package_sha256 }}"
     timeout: 120
   when: not gitlab_file_result.stat.exists
+  register: get_resule
 
 - name: install | install require soft
   yum:
@@ -30,4 +31,4 @@
   shell: "rpm -ivh {{ gitlab_package_name }}"
   args:
     chdir: "{{ soft_package_directory }}"
-  when: "{{ soft_package_directory }}/{{ gitlab_package_name }}"
+  when: not get_resule.msg.failed
