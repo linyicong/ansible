@@ -18,7 +18,8 @@
     url: "{{ gitlab_package_url }}"
     dest: "{{ soft_package_directory }}/{{ gitlab_package_name }}"
     checksum: "{{ gitlab_package_sha256 }}"
-  when: not gitlab_file_result.stat.exists and gitlab_file_result.stat.checksum != {{ gitlab_package_sha256 }}
+    timeout: 120
+  when: not gitlab_file_result.stat.exists
 
 - name: install | install require soft
   yum:
