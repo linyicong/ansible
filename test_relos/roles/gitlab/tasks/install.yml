@@ -2,7 +2,7 @@
 #
 
 - name: Check if gitlab local file is already configured.
-  state:
+  stat:
     path: "{{ soft_package_directory }}/{{ gitlab_package_name }}"
     checksum_algorithm: sha256
   register: gitlab_file_result
@@ -28,5 +28,5 @@
 - name: install | install gitlab
   shell: "rpm -ivh {{ gitlab_package_name }}"
   args:
-    chdir: {{ soft_package_directory }}
-  when: {{ soft_package_directory }}/{{ gitlab_package_name }}
+    chdir: "{{ soft_package_directory }}"
+  when: "{{ soft_package_directory }}/{{ gitlab_package_name }}"
