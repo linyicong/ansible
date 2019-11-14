@@ -16,3 +16,7 @@
     backup: yes
   tags: config_sysctl_file
   notify: load sysctl config
+
+- name: system_optimization | Disable SELinux
+  selinux:
+    state: disabled

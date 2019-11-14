@@ -1,10 +1,11 @@
 ---
 #
 - name: judge /etc/bashrc
-  shell: ls /etc/bashrc
+  stat:
+    path: /etc/bashrc
   ignore_errors: True
   changed_when: False
-  register: file_result
+  register: bashrc_dir_result
 
 - name: congfig_trash | config trash
   blockinfile:
@@ -56,6 +57,6 @@
           fi
       }
       alias rm='trash'
-  when: file_result is succeeded
+  when: bashrc_dir_result.stat.exists
 
 
