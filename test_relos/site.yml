@@ -1,8 +1,8 @@
 ---
 #
-- hosts: nginx_server
+- hosts: gitlab_server
   gather_facts: False
   remote_user: root
   roles:
-    - nginx
+    - gitlab
 
