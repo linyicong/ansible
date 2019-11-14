@@ -1,4 +1,6 @@
 ---
 #
 
+# 安装gitlab
+- import_tasks: install.yml
 
