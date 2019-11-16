@@ -1,8 +1,9 @@
 ---
 #
-- hosts: gitlab_server
-  gather_facts: False
-  remote_user: root
+- hosts: all
+  roles:
+    - common
+
+- hosts: 192.168.2.237
   roles:
     - gitlab
-

@@ -1,0 +1,27 @@
+---
+- name: reload sshd
+  service: name=sshd state=reloaded
+
+
+- name: restart iptables
+  service: name=iptables state=restarted
+
+
+- name: restart network
+  service: name=network state=reloaded
+
+
+- name: yum makecache
+  yum:
+    name: bash
+    update_cache: yes
+    state: present
+  ignore_errors: True
+
+
+- name: load sysctl config
+  shell: "sysctl -p "
+
+
+- name: reload firewall
+  service: name=firewall state=restarted

@@ -1,0 +1,62 @@
+---
+#
+- name: judge /etc/bashrc
+  stat:
+    path: /etc/bashrc
+  ignore_errors: True
+  changed_when: False
+  register: bashrc_dir_result
+
+- name: congfig_trash | config trash
+  blockinfile:
+    marker: "### {mark} trash ANSIBLE MANAGED BLOCK ###"
+    path: /etc/bashrc
+    backup: yes
+    block: |
+      function trash() {
+          if [ ! -z "$*" ]
+          then
+              for file in $@
+              do
+                  if echo ${file}|grep -q -P '^\-{1,2}([a-z]|[A-Z])+$'
+                  then
+                      echo -e 'rm: trash no need to use options\nUsage: rm TARGET [TARGET2] [TARGET...]'
+                      return 1
+                  fi
+              done
+
+              USER=$(whoami)
+              for file in $@
+              do
+                  if echo ${file}|grep -q -P '^/'
+                  then
+                      #absolute path
+                      DIR=$(echo $(dirname ${file})|sed -r 's@^/@@g')
+                      NAME=$(basename ${file})
+                  else
+                      #relative path
+                      DIR=$(dirname $(echo "$(pwd)/${file}")|sed -r 's@^/@@g')
+                      NAME=$(basename ${file})
+                  fi
+
+                  if [ -d "/data/.trash/${USER}/${DIR}" ]
+                  then
+                      if [ -e "/data/.trash/${USER}/${DIR}/${NAME}" ]
+                      then
+                          mv ${file} /data/.trash/${USER}/${DIR}/${NAME}_$(date +'%F_%T')
+                      else
+                          mv ${file} /data/.trash/${USER}/${DIR}/${NAME}
+                      fi
+                  else
+                      mkdir -p /data/.trash/${USER}/${DIR}
+                       mv ${file} /data/.trash/${USER}/${DIR}/${NAME}
+                  fi
+              done
+          else
+              echo 'rm: missing operand'
+          fi
+      }
+      alias rm='trash'
+  when: bashrc_dir_result.stat.exists
+
+

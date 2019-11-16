@@ -1,0 +1,6 @@
+---
+# repo info
+USTC_baseurl: "https://mirrors.ustc.edu.cn/centos/$releasever/os/$basearch/"
+ALI_baseurl: "https://mirrors.aliyun.com/centos/$releasever/os/$basearch/"
+CENTOS7_GPG_KEY: "gpgkey=http://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOS-7:"
+CENTOS6_GPG_KEY: "gpgkey=http://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOS-6"

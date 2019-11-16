@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<zone>
+  <short>Public</short>
+  <description>For use in public areas. You do not trust the other computers on networks to not harm your computer. Only selected incoming connections are accepted.</description>
+  <interface name="ens33"/>
+  <source address="192.168.137.0/24"/>
+  <service name="dhcpv6-client"/>
+  <service name="ssh"/>
+
+  {% if ansible_local.customize.server.role == "master" %}
+  <port protocol="tcp" port="3690"/>
+  {% endif %}
+
+</zone>
+
+
