@@ -3,5 +3,5 @@
 
 - name: install | install gitlab
   yum:
-    name: "gitlab-ee"
+    name: "gitlab-ce"
     state: latest
