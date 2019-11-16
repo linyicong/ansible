@@ -1,6 +1,11 @@
 ---
 #
 
+# 配置gitlab yum仓库
+- import_tasks: config_repo.yml
+  tags: config_gitlab_repo
+
 # 安装gitlab
 - import_tasks: install.yml
+  tags: install_gitlab
 

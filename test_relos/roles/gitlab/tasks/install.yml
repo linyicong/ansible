@@ -1,34 +1,7 @@
 ---
 #
 
-- name: Check if gitlab local file is already configured.
-  stat:
-    path: "{{ soft_package_directory }}/{{ gitlab_package_name }}"
-    checksum_algorithm: sha256
-  register: gitlab_file_result
-
-- name: install | jude soft directory
-  file:
-    path: "{{ soft_package_directory }}"
-    state: directory
-  when: not gitlab_file_result.stat.exists
-
-- name: install | wget gitlab package
-  get_url:
-    url: "{{ gitlab_package_url }}"
-    dest: "{{ soft_package_directory }}/{{ gitlab_package_name }}"
-    checksum: "{{ gitlab_package_sha256 }}"
-    timeout: 120
-  when: not gitlab_file_result.stat.exists
-  register: get_resule
-
-- name: install | install require soft
-  yum:
-    name: "{{ require_soft }}"
-    state: installed
-
 - name: install | install gitlab
-  shell: "rpm -ivh {{ gitlab_package_name }}"
-  args:
-    chdir: "{{ soft_package_directory }}"
-  when: not get_resule.msg.failed
+  yum:
+    name: "gitlab-ee"
+    state: latest
