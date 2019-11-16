@@ -5,9 +5,9 @@ ansible_facts_file: "customize.fact"
 
 # server and the role info
 roles_list:
-  "192.168.122.77": "ansible_server"
-  "192.168.122.65": "client"
-  "192.168.122.42": "client"
+  "192.168.2.237": "ansible_server"
+  "192.168.2.238": "client"
+  "192.168.2.239": "client"
   "192.168.137.10": "ansible_server"
   "192.168.137.199": "client"
   "192.168.1.143": "client"
