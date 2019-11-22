@@ -11,7 +11,7 @@
 
   # 配置facts
   - import_tasks: set_facts.yml
- tags: set_facts
+tags: set_facts
 
 # 配置rm命令为trash
 - import_tasks: config_trash.yml
