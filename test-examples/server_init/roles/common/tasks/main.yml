@@ -3,15 +3,16 @@
 # 导入基础软件变量定义文件
 - name: include install soft vars file
   include_vars: base_soft.yml
+  tags: always
 
 # 配置自定义facts
-- block：
-  - name: include fact vars file
-    include_vars: server_fact.yml
+- name: include fact vars file
+  include_vars: server_fact.yml
+  tags: always
 
-  # 配置facts
-  - import_tasks: set_facts.yml
-tags: set_facts
+# 配置facts
+- import_tasks: set_facts.yml
+  tags: set_facts
 
 # 配置rm命令为trash
 - import_tasks: config_trash.yml
