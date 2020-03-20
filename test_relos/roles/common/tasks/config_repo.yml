@@ -1,9 +1,0 @@
----
-#
-- name: config_repe |copy repo file
-  template:
-    src: "CentOS-ALiYun-Base.repo.j2"
-    dest: "/etc/yum.repos.d/CentOS-ALiYun-Base.repo"
-  notify: yum makecache
-
-

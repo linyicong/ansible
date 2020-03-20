@@ -1,3 +1,0 @@
----
-ntpserver: ntp1.aliyun.com
-ansible_server: 192.168.137.10

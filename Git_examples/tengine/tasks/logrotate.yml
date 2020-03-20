@@ -1,7 +1,0 @@
----
-# author: lework
-
-- name: logrotate | Setup Tengine logrotate conf file.
-  template:
-    dest: "/etc/logrotate.d/tengine"
-    src: tengine.logrotate.j2

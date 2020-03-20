@@ -1,6 +1,0 @@
----
-# author: lework
-
-- include_vars: "{{ ansible_distribution }}_{{ ansible_distribution_major_version }}.yml"
-- import_tasks: install.yml
-- import_tasks: configure.yml

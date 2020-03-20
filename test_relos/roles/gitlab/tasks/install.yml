@@ -1,7 +1,0 @@
----
-#
-
-- name: install | install gitlab
-  yum:
-    name: "gitlab-ce"
-    state: latest

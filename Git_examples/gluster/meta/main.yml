@@ -1,6 +1,0 @@
----
-
-dependencies:
-  - { role: hostnames, when: gluster_hostnames }
-  - { role: repo-epel, when: gluster_epel and not gluster_client}
-  

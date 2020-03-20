@@ -1,7 +1,0 @@
----
-
-- name: backup | 创建备份目录
-  file: path={{ deploy_code_history_path }}/{{ deploy_service }}-{{ ansible_date_time.iso8601_basic_short }}/ state=directory
-
-- name: backup | 备份代码
-  shell: "mv -f {{ online_code_path }}/* {{ deploy_code_history_path }}/{{ deploy_service }}-{{ ansible_date_time.iso8601_basic_short }}/"

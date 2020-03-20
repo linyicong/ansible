@@ -1,7 +1,0 @@
----
-# author: lework
-
-- name: logrotate | Setup HAProxy logrotate conf file.
-  template:
-    dest: "/etc/logrotate.d/haproxy"
-    src: haproxy.logrotate.j2

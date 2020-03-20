@@ -1,9 +1,0 @@
----
-#
-- hosts: all
-  roles:
-    - common
-
-- hosts: 192.168.2.237
-  roles:
-    - gitlab

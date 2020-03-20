@@ -1,7 +1,0 @@
----
-#
-
-- name: logrotate | Setup Nginx logrotate conf file.
-  template:
-    src: nginx.logrotate.j2
-    dest: "/etc/logrotate.d/nginx"

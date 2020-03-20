@@ -1,4 +1,0 @@
-# This is iptables module file playbook hosts file
-
-192.168.137.128  roles=dbserver
-192.168.137.14  roles=webserver

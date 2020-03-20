@@ -1,5 +1,0 @@
----
-# 
-- name: install_soft | install base software
-  yum: "name={{ base_soft }} state=installed  update_cache=yes skip_broken=yes "
-  tags: install_base_soft

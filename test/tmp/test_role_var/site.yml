@@ -1,7 +1,0 @@
----
-
-- hosts: normal
-  gather_facts: False
-  roles:
-    - { role: testaa, dir: '/data/a',  test_port: 5000 }
-    - { role: testaa, dir: '/data/b',  test_port: 5000 }
